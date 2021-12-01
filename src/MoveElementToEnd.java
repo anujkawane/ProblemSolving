@@ -24,4 +24,15 @@ public class MoveElementToEnd {
         }
         return array;
     }
+
+    public static List<Integer> moveElementToEnd1(List<Integer> array, int toMove) {
+        int index = array.size()-1;
+        for(int i = array.size()-1; i>=0;i--){
+            if(array.get(i)==toMove){
+                Collections.swap(array, i, index);
+                index--;
+            }
+        }
+        return array;
+    }
 }
