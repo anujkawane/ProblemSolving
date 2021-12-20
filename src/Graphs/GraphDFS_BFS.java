@@ -152,6 +152,50 @@ public class GraphDFS_BFS {
         start.setState(State.VISITED);
         return false;
     }
+
+    public boolean isBipartite(int[][] graph) {
+        HashMap<Integer, List<Integer>> map = new HashMap<>();
+        for(int i = 0;i<graph.length;i++){
+            map.put(i,new ArrayList<>());
+            for(int j = 0;j<graph[i].length;j++){
+                map.get(i).add(graph[i][j]);
+            }
+        }
+
+        int[] visited = new int[graph.length];
+//        0 = Un, 1 = Visiting, 3 = VIsited
+        Arrays.fill(visited,0);
+        int[] level = new int[graph.length];
+
+        for(Integer n : map.keySet()){
+            level[n] = 0;
+            if(visited[n]==0 && !isBipartiteHelper(n, visited,level,map)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isBipartiteHelper(Integer node, int[] visited, int[] level, HashMap<Integer, List<Integer>> map){
+        visited[node] = 1;
+        Queue<Integer> q = new LinkedList<>();
+        q.add(node);
+        while(!q.isEmpty()){
+            Integer current = q.peek();
+            for(Integer neighbor : map.get(current)){
+                if(visited[neighbor]==0){
+                    q.add(neighbor);
+                    level[neighbor] = level[current]+1;
+                    visited[neighbor] = 1;
+                }
+                if(level[current]==level[neighbor])
+                    return false;
+            }
+            visited[q.peek()] = 2;
+            q.remove();
+        }
+        return true;
+    }
     public static void main(String[] args) {
 
         Node a = new Node(1);
@@ -183,6 +227,9 @@ public class GraphDFS_BFS {
 //        dfs.printBFS(g);
 
         System.out.println(dfs.hasCycle(g));
+
+        int[][] graph = {{1,2,3},{0,2},{0,1,3},{0,2}};
+        System.out.println(dfs.isBipartite(graph));
 
     }
 
