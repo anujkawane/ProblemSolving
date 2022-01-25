@@ -1,3 +1,8 @@
+package InterviewCampProblems.SubArrayProblems;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class KadaneAlgorithm {
 
     /*
@@ -22,8 +27,10 @@ public class KadaneAlgorithm {
             }
             maxSum  = Math.max(maxSum, maxSumEndingHere);
         }
-        return maxSumEndingHere;
+        return maxSum;
     }
+
+
     public static void main(String[] args) {
 
         int[] array = {-2,-3,4,-1,-2,1,5,-1};
@@ -31,4 +38,6 @@ public class KadaneAlgorithm {
         System.out.println(maximumSumSubarray(array));
 
     }
+
+
 }

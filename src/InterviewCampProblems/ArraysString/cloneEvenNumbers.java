@@ -5,23 +5,6 @@ e.g, [1,2,5,6,8] -> [1,2,2,5,6,6,8,8]. Assume that the array has enough space to
  */
 public class cloneEvenNumbers {
 
-    public static void main(String[] args) {
-        int[] arr = new int[8];
-        arr[0] = 1;
-        arr[1] = 2;
-        arr[2] = 5;
-        arr[3] = 6;
-        arr[4] = 8;
-        arr[5] = -1;
-        arr[6] = -1;
-        arr[7] = -1;
-
-        int result[]  = clone(arr);
-        for(int n : result)
-            System.out.print(n+" ");
-
-    }
-
     static int[] clone(int[] a) {
         if (a == null || a.length == 0)
             return a;
@@ -41,4 +24,23 @@ public class cloneEvenNumbers {
         }
         return i;
     }
+
+    public static void main(String[] args) {
+        int[] arr = new int[8];
+        arr[0] = 1;
+        arr[1] = 2;
+        arr[2] = 5;
+        arr[3] = 6;
+        arr[4] = 8;
+        arr[5] = -1;
+        arr[6] = -1;
+        arr[7] = -1;
+
+        int result[]  = clone(arr);
+        for(int n : result)
+            System.out.print(n+" ");
+
+    }
+
+
 }

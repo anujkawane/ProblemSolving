@@ -12,7 +12,7 @@ public class ArrayOfSquares {
     public static int[] squareNumber(int[] nums){
         int start = 0, end = nums.length-1;
         int index = end;
-        int result[] = new int[nums.length];
+        int[] result = new int[nums.length];
         while (start<=end){
             if(Math.abs(nums[start])>Math.abs(nums[end])){
                 result[index] = nums[start] * nums[start];
@@ -28,8 +28,8 @@ public class ArrayOfSquares {
     }
 
     public static void main(String[] args) {
-        int arr[] = {-7,-3,2,3,11};
-        int result[]  = squareNumber(arr);
+        int[] arr = {-7,-3,2,3,11};
+        int[] result  = squareNumber(arr);
         for(int n : result)
             System.out.print(n+" ");
     }
