@@ -1,4 +1,4 @@
-package BinarySearch;
+package InterviewCampProblems.BinarySearch;
 
 public class BS_SearchTarget {
 

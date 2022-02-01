@@ -16,7 +16,7 @@ public class QueueWithMax {
 
     public int getMax() throws QueueEmptyException {
         if(maxQ.isEmpty())
-            throw new QueueEmptyException();
+            throw new QueueEmptyException("Empty Queue");
         return maxQ.getFirst();
     }
 
@@ -31,7 +31,7 @@ public class QueueWithMax {
 
     public void dequeue() throws QueueEmptyException {
         if(!queue.isEmpty())
-            throw new QueueEmptyException();
+            throw new QueueEmptyException("Empty Queue");
         int item = queue.remove();
         if(maxQ.getFirst() == item) {
             maxQ.removeFirst();
