@@ -122,7 +122,36 @@ public class BinaryTreeProblems {
 
 //#####################################################################################################################
 
+   static int sum = 0;
+    public static int sumNumbers(TreeNode root) {
+        if(root == null)
+            return 0;
+        String s = "";
+        helper(root, s);
+        return sum;
+    }
 
+    public static void helper(TreeNode root, String str){
+        if(root == null)
+            return;
 
+        str += root.val;
 
+        if(root.left == null && root.right == null){
+            sum += Integer.valueOf(str);
+        }
+
+        helper(root.left, str);
+        helper(root.right, str);
+        str = str.substring(0, str.length() - 1);
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(4);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(0);
+        root.left.left = new TreeNode(5);
+        root.left.right = new TreeNode(1);
+        System.out.println(sumNumbers(root));
+    }
 }

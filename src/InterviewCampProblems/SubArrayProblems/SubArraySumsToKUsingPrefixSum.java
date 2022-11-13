@@ -1,6 +1,5 @@
 package InterviewCampProblems.SubArrayProblems;
 
-import javax.sound.midi.Soundbank;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -24,13 +23,12 @@ public class SubArraySumsToKUsingPrefixSum {
 
     public static void main(String[] args) {
 
-        int[] array = {2,4,-2,1,-3,5,-3};
+//        int[] array = {2,4,-2,1,-3,5,-3};
 //        int[] res = subArraySum(array, 0);
-//        for(int n:res){
-//            System.out.print(n+" ");
+//        for(int n : res){
+//            System.out.print(n + " ");
 //        }
-
-        System.out.println(subarraySum(array, 0));
+      
     }
 
     public static int subarraySum(int[] nums, int k) {

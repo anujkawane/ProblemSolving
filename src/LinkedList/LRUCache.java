@@ -34,9 +34,10 @@ class LRUCache {
     }
 
     public int get(int key) {
-        Node node = map.get(key);
-        if(node == null)
+        if(!map.containsKey(key))
             return -1;
+
+        Node node = map.get(key);
         update(node);
         return node.value;
     }

@@ -26,15 +26,7 @@ public class cloneEvenNumbers {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[8];
-        arr[0] = 1;
-        arr[1] = 2;
-        arr[2] = 5;
-        arr[3] = 6;
-        arr[4] = 8;
-        arr[5] = -1;
-        arr[6] = -1;
-        arr[7] = -1;
+        int[] arr = {1,2,5,6,8,-1,-1,-1};
 
         int result[]  = clone(arr);
         for(int n : result)
