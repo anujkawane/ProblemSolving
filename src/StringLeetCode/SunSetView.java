@@ -25,6 +25,4 @@ public class SunSetView {
         }
         return result;
     }
-
-
 }
