@@ -1,67 +1,71 @@
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.TreeMap;
 
 class Solution {
-    static StringBuilder sb;
-    public static String alienOrder(String[] words) {
+    TreeMap<Integer, Integer> intervals = new TreeMap<>();
 
-        sb = new StringBuilder();
-        Map<Character, List<Character>> map = new HashMap<>();
-
-        for(String word : words){
-            for(char c : word.toCharArray()){
-                map.putIfAbsent(c, new ArrayList<>());
-            }
+    public void addRange(int left, int right) {
+        Integer start = intervals.floorKey(left);
+        Integer end = intervals.floorKey(right);
+        if(start != null && intervals.get(start) >= left){
+            left = start;
         }
 
-        for(int i = 0; i < words.length - 1; i++){
-            String s1 = words[i];
-            String s2 = words[i+1];
-
-            for(int j = 0; j < Math.min(s1.length(), s2.length()); j++){
-                if(s1.charAt(j) != s2.charAt(j)){
-                    map.get(s1.charAt(j)).add(s2.charAt(j));
-                    break;
-                }
-            }
+        if(end != null && intervals.get(end) > right){
+            right = intervals.get(end);
         }
 
-        int[] visited = new int[26];
+        intervals.put(left, right);
 
-        for (Character key : map.keySet()) {
-            if(visited[key-'a'] == 0 && dfs(map, visited, key)){
-                return "";
-            }
-        }
-
-        return sb.reverse().toString();
-
-
+        intervals.subMap(left, false, right, true).clear();
     }
 
-    public static boolean dfs(Map<Character, List<Character>> map, int[] visited, char current){
-        if(visited[current-'a'] == 1){
-            return true;
+    public boolean queryRange(int left, int right) {
+        Integer start = intervals.floorKey(left);
+        if(start == null) return false;
+        return intervals.get(start) >= right;
+    }
+
+    public void removeRange(int left, int right) {
+        Integer start = intervals.floorKey(left);
+        Integer end = intervals.floorKey(right);
+
+        if(end != null && intervals.get(end) > right){
+            intervals.put(right, intervals.get(end));
         }
-
-        if(visited[current-'a'] == 2){
-            return false;
+        if(start != null && intervals.get(start) > left){
+            intervals.put(start, left);
         }
+        intervals.subMap(left, true, right, false).clear();
+    }
 
-        visited[current-'a'] = 1;
+    public static boolean canConvert(String str1, String str2) {
+        if(str1.equals(str2)) return true;
 
-        for(Character neighbor : map.get(current)){
-            if(dfs(map, visited, neighbor)){
-                return true;
+        Map<Character, Character> map = new HashMap<>();
+
+        for(int i = 0; i < str1.length(); i++){
+            char a = str1.charAt(i);
+            char b = str2.charAt(i);
+
+            if(map.getOrDefault(a, b) != b){
+                return false;
             }
+            map.put(a, b);
         }
-
-        sb.append(current);
-        visited[current-'a'] = 2;
-        return false;
+        return new HashSet<>(map.values()).size() < 26;
     }
 
     public static void main(String[] args) {
+//        Solution s = new Solution();
+//        s.addRange(10, 20);
+//        s.removeRange(14, 16);
+//        s.queryRange(10, 14);
+//        s.queryRange(13,15);
+//        s.queryRange(16,17);
 
-        System.out.println(alienOrder(new String[]{"ac","ab","zc","zb"}));
+        canConvert("abcdefghijklmnopqrstuvwxyz", "bcdefghijklmnopqrstuvwxyza");
     }
 }

@@ -54,11 +54,11 @@ public class Test  {
 
     public List<Interval> employeeFreeTime(List<List<Interval>> schedule) {
 
-        List<Interval> list = new ArrayList<>((a, b) -> a.start - b.start);
-        for(List<Interval> l : schedule){
-            list.addAll(l);
-        }
-
+//        List<Interval> list = new ArrayList<>((a, b) -> a.start - b.start);
+//        for(List<Interval> l : schedule){
+//            list.addAll(l);
+//        }
+        return null;
     }
 
     public static  void main(String[] args) {
